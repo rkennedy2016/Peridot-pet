@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Peridot OS</title>
+<style>
+    body {
+        margin: 0;
+        background: linear-gradient(135deg, #6dd5ed, #2193b0);
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    #desktop {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+    }
+
+    #peridot {
+        width: 120px;
+        height: 120px;
+        background-image: url('https://i.imgur.com/8Q1ZQ0R.png'); /* Replace with your sprite */
+        background-size: cover;
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    #speech {
+        position: absolute;
+        bottom: 150px;
+        left: 20px;
+        background: white;
+        padding: 10px 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<div id="desktop">
+    <div id="peridot"></div>
+    <div id="speech"></div>
+</div>
+
+<script>
+    const peridot = document.getElementById("peridot");
+    const speech = document.getElementById("speech");
+
+    const lines = [
+        "Hey Rowan!",
+        "I’m your Peridot OS buddy.",
+        "Tap me again!",
+        "I like your phone.",
+        "Let’s explore stuff together."
+    ];
+
+    peridot.addEventListener("click", () => {
+        const line = lines[Math.floor(Math.random() * lines.length)];
+        speech.innerText = line;
+        speech.style.display = "block";
+
+        peridot.style.transform = "scale(1.1)";
+        setTimeout(() => peridot.style.transform = "scale(1)", 200);
+    });
+
+    // Idle movement
+    setInterval(() => {
+        const x = Math.random() * (window.innerWidth - 120);
+        peridot.style.left = x + "px";
+    }, 4000);
+</script>
+
+</body>
+</html>
